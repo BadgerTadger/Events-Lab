@@ -1,0 +1,19 @@
+﻿@model Events.Web.Models.EventInputModel
+
+@{
+    ViewBag.Title = "Create New Event";
+    ViewBag.SubmitText = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_EventEditorForm")
+
+@section scripts {
+    @Scripts.Render("~/bundles/bootstrap-datetimepicker")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles {
+    @Styles.Render("~/Content/bootstrap-datetimepicker")
+}

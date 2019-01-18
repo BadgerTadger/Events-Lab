@@ -22,5 +22,10 @@
                 };
             }
         }
+
+        internal static CommentViewModel Add()
+        {
+            return new CommentViewModel();
+        }
     }
 }

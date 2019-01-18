@@ -26,9 +26,19 @@ else
     <p>No comments</p>
 }
 
+<div id="event-details-@Model.Id">
+    @Ajax.ActionLink("Add Comment", "AddComment", "Home",
+        new { ID = Model.Id },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "event-details-" + Model.Id
+        }, new { @class = "btn btn-default" })
+</div>
+
 @if (ViewBag.CanEdit)
 {
-    @Html.ActionLink("Edit", "Edit", "Events", new {  id = Model.Id }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Edit", "Edit", "Events", new { id = Model.Id }, new { @class = "btn btn-default" })
     <span></span>
     @Html.ActionLink("Delete", "Delete", "Events", new { id = Model.Id }, new { @class = "btn btn-default" })
 }

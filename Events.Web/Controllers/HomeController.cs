@@ -40,5 +40,18 @@
 
             return this.PartialView("_EventDetails", eventDetails);
         }
+
+        [HttpGet]
+        public ActionResult AddComment()
+        {
+            return this.PartialView("_AddComment");
+        }
+
+        [HttpPost]
+        public ActionResult AddComment(int id)
+        {
+            return this.PartialView("_AddComment");
+        }
+
     }
 }

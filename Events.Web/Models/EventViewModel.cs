@@ -2,6 +2,7 @@
 {
     using Events.Data;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq.Expressions;
 
     public class EventViewModel
@@ -27,6 +28,19 @@
                     Location = e.Location
                 };
             }
+        }
+
+        public static EventViewModel CreateFromEvent(Event e)
+        {
+            return new EventViewModel()
+            {
+                Id = e.Id,
+                Title = e.Title,
+                StartDateTime = e.StartDateTime,
+                Duration = e.Duration,
+                Author = e.Author.FullName,
+                Location = e.Location,
+            };
         }
     }
 }
