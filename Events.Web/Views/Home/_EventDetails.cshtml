@@ -26,13 +26,12 @@ else
     <p>No comments</p>
 }
 
-<div id="event-details-@Model.Id">
+<div id="comment-details-@Model.Id">
     @Ajax.ActionLink("Add Comment", "AddComment", "Home",
-        new { ID = Model.Id },
         new AjaxOptions
         {
-            InsertionMode = InsertionMode.InsertBefore,
-            UpdateTargetId = "event-details-" + Model.Id
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comment-details-" + Model.Id
         }, new { @class = "btn btn-default" })
 </div>
 

@@ -177,6 +177,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CommentDetailsViewModel.cs" />
+    <Compile Include="Models\CommentInputModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\EventDetailsViewModel.cs" />
     <Compile Include="Models\EventInputModel.cs" />
@@ -257,7 +259,7 @@
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\_EventEditorForm.cshtml" />
     <Content Include="Views\Events\Delete.cshtml" />
-    <Content Include="Views\Home\_AddComent.cshtml" />
+    <Content Include="Views\Home\_AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
