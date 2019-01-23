@@ -17,6 +17,7 @@
                 {
                     @: (by @comment.Author)
                 }
+                @Html.ActionLink("Delete", "DeleteComment", "Home", new { id = comment.Id }, new { @class = "btn btn-default" })
             </li>
         }
     </ul>
@@ -27,7 +28,7 @@ else
 }
 
 <div id="comment-details-@Model.Id">
-    @Ajax.ActionLink("Add Comment", "AddComment", "Home",
+    @Ajax.ActionLink("Add Comment", "AddComment", "Home", new { eventId = Model.Id },
         new AjaxOptions
         {
             InsertionMode = InsertionMode.Replace,

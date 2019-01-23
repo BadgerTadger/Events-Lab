@@ -43,26 +43,27 @@
             return this.PartialView("_EventDetails", eventDetails);
         }
 
-        public ActionResult AddComment()
+        public ActionResult AddComment(int eventId)
         {
             var commentDetails = this.db.Comments
                 .Add(new Data.Comment());
                 
-            return this.PartialView("_AddComment", new CommentInputModel());
+            return this.PartialView("_AddComment", new CommentInputModel(eventId));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveComment(CommentInputModel model)
         {
             if (model != null && this.ModelState.IsValid)
             {
                 var c = new Comment()
                 {
-                    Author = this.db.Users.First(),
+                    Text = model.Text,
                     Date = DateTime.Now,
                     AuthorId = this.User.Identity.GetUserId(),
-                    //EventId = id,
-                    //Event = LoadEvent(id),
-                    Text = model.Text
+                    EventId = model.EventId,
+                    Event = LoadEvent(model.EventId)
                 };
                 this.db.Comments.Add(c);
                 this.db.SaveChanges();
@@ -72,6 +73,28 @@
             }
 
             return this.View(model);
+        }
+
+        public ActionResult DeleteComment(int id)
+        {
+
+            Comment comment = LoadComment(id);
+            this.db.Comments.Remove(comment);
+            this.db.SaveChanges();
+            this.AddNotification("Comment deleted.", NotificationType.INFO);
+
+            return this.RedirectToAction("Index");
+        }
+
+        private Comment LoadComment(int id)
+        {
+            var currentUserId = this.User.Identity.GetUserId();
+            var isAdmin = this.IsAdmin();
+            var commentToDelete = this.db.Comments
+                .Where(c => c.Id == id)
+                .FirstOrDefault(c => c.AuthorId == currentUserId || isAdmin);
+
+            return commentToDelete;
         }
 
         private Event LoadEvent(int id)
